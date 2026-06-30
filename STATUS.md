@@ -27,13 +27,42 @@ hero · agentic · sidekick · online · retail · marketing · operations · sh
 ## Progress
 - [x] **Phase 0** capture — scrape is complete (DOM+CSS+138 JS chunks local; media on CDN).
 - [x] **Phase A** scaffold — Vite app renders full styled DOM; 21 sections; real fonts
-  (National2/ShopifyInter) loaded; 0 console errors; `npm run build` passes. Hero +
-  canvas regions are black (engine = Phase C); content chapters render (text/fonts/layout
-  correct). Verified at 1440px.
-- [ ] **Phase B** componentize section by section + content JSON + per-section A/B gate. ← NEXT
-- [ ] **Phase C** reuse 3D engine bundle.
+  loaded; 0 console errors; build passes.
+- [~] **Phase B** componentize section by section + content JSON + per-section A/B gate.
+  - [x] Architecture: body split into 10 real top-level regions + 11 chapter slices
+    (`scripts/split-dump.mjs`); `App.tsx` rebuilds the wrapper ancestry as JSX and renders
+    each region/section, swapping dumps → components one at a time. Content seam =
+    `content/spring2026.json` + typed `content/types.ts`, distributed by `App`.
+  - [x] **Footer (Outro)** — clean typed component, content-driven, verified 1:1.
+  - [x] **Hero** — clean typed component + `SplitText` helper (per-letter reveal markup
+    proven byte-for-byte, `scripts/verify-splittext.mjs`); content-driven; verified 1:1
+    (rect, 48 split-chars/7 groups, exact stagger, 10 nav links, engine attrs).
+  - [ ] **10 chapters** (agentic, sidekick, online, retail, marketing, operations,
+    shop-app, payments, finance, developer) — currently faithful RawHtml slices rendering
+    1:1; awaiting content-driven componentization. ← NEXT
+  - [ ] **Chrome** (shared-tooltip, page-loading overlay, top-nav gradient, signup modal,
+    video modal, pill-nav) — still RawHtml; convert + most are interactive (pill-nav/modals
+    couple to Phase C).
+- [ ] **Phase C** reuse 3D engine bundle (the big visual payoff — hero/canvas are blank until then).
 - [ ] **Phase D** de-scrape.
 - [ ] **Phase E** ship + verify live.
+
+## Per-chapter conversion procedure (the proven loop — repeat for each remaining chapter)
+1. `node scripts/outline.mjs src/modules/spring2026/_dump/sections/<id>.html 9` to read structure.
+2. The repeating unit is `<article data-component-name="product">` (full-width hero
+   articles + subgrid card rows + text-card grids) inside the
+   `data-component-extra-section-handle="<id>"` section. Build reusable presentational
+   components for these (`ProductArticle`, `Media`) once, in `modules/spring2026/components/`.
+   ⚠ Chapters are bespoke: retail has extra `#ballcap` anchor + bg layers; only agentic has
+   a visible subhead (others use an `invisible min-h-[1lh]` placeholder). Handle per-chapter.
+3. Lift copy + media (`src`/`srcset`/`poster`/`href`/labels) into `content/spring2026.json`;
+   keep class/id/data-attrs verbatim (they drive the engine).
+4. ⚠ Do NOT pipe huge chapters straight through `html-to-component.mjs`: it leaves HTML
+   entities in `className` (`[&amp;&gt;svg]` won't match the CSS). The RawHtml slice already
+   renders those 1:1 (browser decodes), so port by hand from the outline or post-process to
+   decode entities in className/style/attr values.
+5. Verify: geometry A/B vs the section's prior (dump) rects + the live mirror
+   (`npm run mirror`), at desktop/tablet/mobile; 0 new console errors. Then delete the dump.
 
 ## Notes / gotchas found
 - `#page-loading-overlay` (z-index max, black) covers the page until `data-loaded` is set
