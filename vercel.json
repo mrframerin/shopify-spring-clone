@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/ca/editions/spring2026",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/:path*/api/:rest*",
