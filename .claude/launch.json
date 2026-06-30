@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173,
+      "autoPort": false
+    },
+    {
+      "name": "mirror",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["public/mirror/server.py"],
+      "env": { "PORT": "3001" },
+      "port": 3001,
+      "autoPort": false
+    }
+  ]
+}
