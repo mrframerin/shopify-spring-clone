@@ -1,0 +1,9 @@
+{
+  "outro": {
+    "copyright": "© Shopify Inc",
+    "links": [
+      { "label": "Terms of Service", "href": "https://www.shopify.com/legal/terms" },
+      { "label": "Privacy Policy", "href": "https://www.shopify.com/legal/privacy" }
+    ]
+  }
+}
