@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*/api/:rest*",
+      "destination": "https://www.shopify.com/:path*/api/:rest*"
+    },
+    {
+      "source": "/((?!assets/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
