@@ -6,11 +6,24 @@ export interface LinkItem {
   href: string;
 }
 
+export interface HeroNavItem {
+  label: string;
+  href: string;
+  handle: string;
+}
+
+export interface HeroContent {
+  ringLabel: string;
+  description: string;
+  nav: HeroNavItem[];
+}
+
 export interface OutroContent {
   copyright: string;
   links: LinkItem[];
 }
 
 export interface Spring2026Content {
+  hero: HeroContent;
   outro: OutroContent;
 }

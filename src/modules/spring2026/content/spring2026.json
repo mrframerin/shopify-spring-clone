@@ -1,4 +1,20 @@
 {
+  "hero": {
+    "ringLabel": "Everywhere",
+    "description": "150+ updates to sell, shop, and build everywhere",
+    "nav": [
+      { "label": "Agentic", "href": "#agentic", "handle": "agentic" },
+      { "label": "Sidekick", "href": "#sidekick", "handle": "sidekick" },
+      { "label": "Online", "href": "#online", "handle": "online" },
+      { "label": "Retail", "href": "#retail", "handle": "retail" },
+      { "label": "Marketing", "href": "#marketing", "handle": "marketing" },
+      { "label": "Operations", "href": "#operations", "handle": "operations" },
+      { "label": "Shop app", "href": "#shop-app", "handle": "shop-app" },
+      { "label": "Payments", "href": "#payments", "handle": "payments" },
+      { "label": "Finance", "href": "#finance", "handle": "finance" },
+      { "label": "Developer", "href": "#developer", "handle": "developer" }
+    ]
+  },
   "outro": {
     "copyright": "© Shopify Inc",
     "links": [

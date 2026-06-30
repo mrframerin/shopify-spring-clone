@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/modules/spring2026/content/types.ts","./src/shared/components/outro.tsx","./src/shared/components/rawhtml.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/modules/spring2026/components/hero/hero.tsx","./src/modules/spring2026/content/types.ts","./src/shared/components/outro.tsx","./src/shared/components/rawhtml.tsx","./src/shared/components/splittext.tsx"],"version":"5.9.3"}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { RawHtml } from "./shared/components/RawHtml";
 import { Outro } from "./shared/components/Outro";
+import { Hero } from "./modules/spring2026/components/hero/Hero";
 import contentJson from "./modules/spring2026/content/spring2026.json";
 import type { Spring2026Content } from "./modules/spring2026/content/types";
 
@@ -57,7 +58,8 @@ export function App() {
       <RawHtml html={region("pill-nav")} />
 
       <main>
-        {CHAPTERS.map((id) => (
+        <Hero {...content.hero} />
+        {CHAPTERS.filter((id) => id !== "hero").map((id) => (
           <RawHtml key={id} html={section(id)} />
         ))}
       </main>
