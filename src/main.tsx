@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
@@ -9,6 +10,8 @@ import "./styles/fonts.css";
 import "./styles/app.css";
 import "./styles/design.css";
 
-// No StrictMode: the embedded WebGL/scroll engine is sensitive to the double-invoked
-// effects StrictMode adds in dev, and we want dev to behave the same as production.
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);

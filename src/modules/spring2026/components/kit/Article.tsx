@@ -11,17 +11,20 @@ const colSpanClass: Record<Cols, string> = {
   2: "col-span-6 sm:col-span-3 md:col-span-6",
 };
 
+// Per-breakpoint stagger classes, written as static literals so Tailwind's source
+// scanner generates them (interpolated class fragments are invisible to it).
+const SM_INDEX = ["", "sm:[--scroll-reveal-index:1]"];
+const MD_INDEX = [
+  "md:[--scroll-reveal-index:0]",
+  "md:[--scroll-reveal-index:1]",
+  "md:[--scroll-reveal-index:2]",
+];
+
 /** Per-card scroll-reveal stagger: sets `--scroll-reveal-index` to the card's column
  *  position per breakpoint (1 col mobile, 2 at sm, mdCols at md) — base 0, sm = i%2,
  *  md = i%mdCols — so cards in the same row reveal in a left-to-right cascade. */
 function revealIndex(i: number, mdCols: Cols): string {
-  const sm = i % 2;
-  const md = i % mdCols;
-  return [
-    "[--scroll-reveal-index:0]",
-    sm ? `sm:[--scroll-reveal-index:${sm}]` : "",
-    `md:[--scroll-reveal-index:${md}]`,
-  ]
+  return ["[--scroll-reveal-index:0]", SM_INDEX[i % 2], MD_INDEX[i % mdCols]]
     .filter(Boolean)
     .join(" ");
 }

@@ -3,8 +3,7 @@
 An interactive product-announcement page: a long-form, scroll-driven microsite that
 walks through the season's launches across eleven chapters (Agentic, Sidekick, Online,
 Retail, Marketing, Operations, Shop app, Payments, Finance, Developer) with per-section
-reveals, a floating section nav, video and sign-up dialogs, and an optional WebGL
-background.
+reveals, a floating section nav, and video and sign-up dialogs.
 
 ## Stack
 
@@ -63,14 +62,3 @@ palette, the 1px spacing scale, and the shifted breakpoints). `design.css` is th
 layer for everything Tailwind doesn't generate — the typography scale, semantic color
 utilities, component classes, and keyframes. It is imported separately from `app.css` so
 it isn't rewritten by Tailwind's CSS pipeline.
-
-**3D background (optional).** By default the background is an empty canvas layer. A
-self-contained WebGL/Theatre.js scene can be plugged in behind the content: it runs on
-its own origin and is embedded in a full-viewport iframe, with scroll and pointer
-forwarded to it over `postMessage` (see `shared/chrome/EngineBackground.tsx`). Enable it
-by pointing `VITE_ENGINE_URL` at the running scene:
-
-```bash
-npm run engine     # serves the scene on :3001
-npm run dev:engine # runs the app with the background enabled
-```

@@ -4,9 +4,6 @@ dist-ssr
 *.local
 .DS_Store
 .vite
-public/mirror/api-cache/*.json
 .env*.local
 *.tsbuildinfo
 
-# Vendored 3D engine runtime (optional background layer), served separately in dev
-engine/
