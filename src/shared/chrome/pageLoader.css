@@ -1,0 +1,88 @@
+/* Full-screen loading cover shown until the app signals ready (App sets
+   [data-loaded], which fades it out). */
+#page-loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #090909;
+  opacity: 1;
+  transition-property: opacity;
+  transition-timing-function: ease-out;
+  transition-delay: 500ms;
+  transition-duration: 800ms;
+}
+
+#page-loading-overlay[data-loaded] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The "particle rain" preloader. */
+.page-loading-preloader {
+  width: 160px;
+  height: 150px;
+  display: grid;
+  place-items: center;
+  contain: layout paint;
+  color: #fff;
+  opacity: 0;
+  animation: page-loading-loader-reveal 300ms ease-out 600ms both;
+  -webkit-mask-image:
+    linear-gradient(to bottom, #0000 0, #000 35%, #000 65%, #0000 100%),
+    linear-gradient(to right, #0000 0, #000 35%, #000 65%, #0000 100%);
+  mask-image:
+    linear-gradient(to bottom, #0000 0, #000 35%, #000 65%, #0000 100%),
+    linear-gradient(to right, #0000 0, #000 35%, #000 65%, #0000 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+#page-loading-overlay[data-loaded] .page-loading-preloader {
+  animation-play-state: paused;
+}
+
+.page-loading-particle-rain {
+  width: 100%;
+}
+
+.page-loading-rain-dot {
+  fill: currentColor;
+  opacity: var(--alpha);
+  animation: page-loading-rain-rise var(--duration) linear var(--delay) infinite;
+}
+
+.page-loading-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loading-rain-dot {
+    animation-duration: calc(var(--duration) * 4);
+    animation-delay: calc(var(--delay) * 4);
+  }
+}
+
+@keyframes page-loading-loader-reveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes page-loading-rain-rise {
+  0% {
+    translate: calc(var(--drift) * -0.5px) calc(var(--travel) * 0.5px);
+  }
+  100% {
+    translate: calc(var(--drift) * 0.5px) calc(var(--travel) * -0.5px);
+  }
+}

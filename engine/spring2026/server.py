@@ -123,6 +123,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_file(os.path.join(ROOT, "index.html"), "text/html; charset=utf-8")
 
     def do_POST(self):
+        # The app posts a few analytics/telemetry beacons; ack them with empty JSON.
         self.send_json({})
 
     def do_HEAD(self):
