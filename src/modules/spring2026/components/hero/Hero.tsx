@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { SplitText } from "../../../../shared/components/SplitText";
 import { HeroRing } from "./HeroRing";
+import { useEmbeddedEngine } from "../../../../shared/embeddedEngine";
 import type { HeroContent } from "../../content/types";
 
 // Animation timing custom properties, identical for every item — presentational, so
@@ -43,7 +44,9 @@ export function Hero({ ringLabel, description, nav }: HeroContent) {
         }
       >
         <div className="w-[calc(var(--hero-ring-radius)*2)] h-[calc(var(--hero-ring-radius)*2)]">
-          <HeroRing />
+          {/* The embedded engine renders its own "Everywhere" ring in WebGL; only draw
+              ours when we're not embedding, so the two don't overlap. */}
+          {!useEmbeddedEngine && <HeroRing />}
         </div>
       </h1>
 
