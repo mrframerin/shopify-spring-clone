@@ -30,24 +30,17 @@
     <link rel="preload" as="font" crossorigin="anonymous" type="font/woff2" href="https://cdn.shopify.com/b/shopify-brochure2-assets/9cfbc7721dcccb956b85f632f175962a.woff2" />
     <link rel="preload" as="font" crossorigin="anonymous" type="font/woff2" href="https://cdn.shopify.com/b/shopify-brochure2-assets/b0f3be75aaf69a9c184619c9091d33b1.woff2" />
 
-    <!-- Original compiled stylesheets, linked verbatim in document order (the
-         scrape-to-components fidelity scaffold). tokens.css is loaded last and is
-         empty until the rebrand phase. -->
-    <link rel="stylesheet" href="/assets/tailwind-vhbvesOV.css" />
-    <link rel="stylesheet" href="/assets/fonts-latin-CynPsvio.css" />
-    <link rel="stylesheet" href="/assets/fonts-japanese-BnWi9q0H.css" />
-    <link rel="stylesheet" href="/tokens.css" />
-
     <style>
       html { color-scheme: dark; }
       html, body { margin: 0; padding: 0; background-color: #090909; color: #fff; }
       img { max-width: 100%; }
-      /* Mount node is transparent to layout so ported DOM behaves as direct body children. */
+      /* Mount node is transparent to layout so its children behave as direct body children. */
       #root { display: contents; }
     </style>
 
+    <!-- Set before first paint: the design layer keeps the hero copy hidden until the
+         app signals it's ready to animate in, avoiding a flash of the final text. -->
     <script>
-      window.__S26_THEATRE_CLIENT_ENABLED__ = false;
       document.documentElement.dataset.heroTextControlled = "true";
     </script>
   </head>

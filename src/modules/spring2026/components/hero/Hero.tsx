@@ -20,18 +20,15 @@ const NAV_ITEM_VARS = { ...BASE_DELAY_VARS, "--underline-duration": "126ms" } as
 
 /**
  * Hero: the fixed `<h1>` whose word art ("Everywhere") is drawn on the WebGL ring
- * (the canvas behind it — Phase C), over a `.grid-container` overlay holding the
- * description and the in-page chapter nav. Both the description and the nav labels
- * render through `SplitText` for the per-letter reveal. The section data attributes
- * drive the scroll engine's hero transition (Phase C).
+ * behind it, over a `.grid-container` overlay holding the description and the
+ * in-page chapter nav. Both the description and the nav labels render through
+ * `SplitText` for the per-letter reveal. The 3D ring is served from a separate
+ * origin and embedded in an iframe; scroll and pointer are forwarded via postMessage.
  */
 export function Hero({ ringLabel, description, nav }: HeroContent) {
   return (
     <section
       id="hero"
-      data-section-key="hero"
-      data-section-transition-exit-scale="1.5"
-      data-section-screen-offset-center-progress="0.4"
       className="relative h-hero-scroll"
     >
       <span hidden />
@@ -71,8 +68,6 @@ export function Hero({ ringLabel, description, nav }: HeroContent) {
                   <a
                     href={item.href}
                     className="[text-box:normal] t5 text-theme-link visited:text-theme-link focus-visible:ring-1 focus-visible:ring-theme-focus-ring outline-none hero-reveal-underline relative inline-block no-underline"
-                    data-component-name="menu-item-link"
-                    data-component-extra-section-handle={item.handle}
                   >
                     <span className="sr-only">{item.label}</span>
                     <SplitText

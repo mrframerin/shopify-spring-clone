@@ -1,17 +1,11 @@
 import type { OutroContent } from "../../modules/spring2026/content/types";
 
 /**
- * Footer / outro region: a top rule, the copyright line, and legal links. The
- * wrapper keeps `data-section-key="outro"` / `data-nav-trigger="true"` so the scroll
- * engine treats it as the final section (Phase C).
+ * Footer / outro region: a top rule, the copyright line, and legal links.
  */
 export function Outro({ copyright, links }: OutroContent) {
   return (
-    <div
-      className="relative isolate z-1 -mt-px bg-b100 text-white"
-      data-section-key="outro"
-      data-nav-trigger="true"
-    >
+    <div className="relative isolate z-1 -mt-px bg-b100 text-white">
       <div className="relative z-1">
         <footer className="content-container pb-40">
           <div className="border-t border-w20" />

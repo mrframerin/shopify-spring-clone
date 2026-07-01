@@ -1,11 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
-// The Vite app is served from the repo root. The captured original lives under
-// `public/mirror/` and is served separately by `public/mirror/server.py` (the
-// functional A/B reference + the source of the reused 3D engine bundle).
+// The Vite app is served from the repo root. Tailwind v4 generates the utility CSS
+// from the components; the design layer + reset live in src/styles/app.css.
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     port: 5173,
   },
