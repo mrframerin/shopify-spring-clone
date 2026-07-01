@@ -100,8 +100,15 @@ import("/assets/entry.client-BbyMAoMp.js");</script><!--$--><script>window.__rea
   // Hide the mirror's own foreground so only the WebGL canvas (#background-container) shows;
   // keep layout intact (opacity, not display) so the scroll-linked scenes stay aligned.
   var style = document.createElement("style");
+  // Hide the engine's entire foreground, then reveal ONLY the background-canvas
+  // subtree. We use `visibility` (not `opacity`): the engine runs opacity entrance
+  // animations on the hero/footer, and per the CSS cascade running animations
+  // override even `!important` opacity — so an opacity rule leaks the text back in.
+  // `visibility:hidden` isn't animated by the engine, and it keeps layout intact so
+  // the (forwarded) scroll still drives the scroll-linked scenes.
   style.textContent =
-    "body>*:not(#background-container):not(style):not(script){opacity:0!important;pointer-events:none!important}" +
+    "body *{visibility:hidden!important;pointer-events:none!important}" +
+    "#background-container,#background-container *{visibility:visible!important}" +
     "#page-loading-overlay{display:none!important}";
   (document.head || document.documentElement).appendChild(style);
   var overlay = document.getElementById("page-loading-overlay");
