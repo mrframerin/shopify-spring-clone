@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
 
@@ -10,8 +9,7 @@ import "./styles/fonts.css";
 import "./styles/app.css";
 import "./styles/design.css";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+// No StrictMode: its dev-only double-invoke of effects would create the WebGL
+// background scene twice on the same node, and the render loop / GL context don't
+// tolerate that. Production behaviour is unaffected (StrictMode is dev-only).
+createRoot(document.getElementById("root")!).render(<App />);

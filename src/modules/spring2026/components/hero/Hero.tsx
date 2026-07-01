@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { SplitText } from "../../../../shared/components/SplitText";
+import { HeroRing } from "./HeroRing";
 import type { HeroContent } from "../../content/types";
 
 // Animation timing custom properties, identical for every item — presentational, so
@@ -19,11 +20,11 @@ const BASE_DELAY_VARS = {
 const NAV_ITEM_VARS = { ...BASE_DELAY_VARS, "--underline-duration": "126ms" } as CSSProperties;
 
 /**
- * Hero: the fixed `<h1>` whose word art ("Everywhere") is drawn on the WebGL ring
- * behind it, over a `.grid-container` overlay holding the description and the
- * in-page chapter nav. Both the description and the nav labels render through
- * `SplitText` for the per-letter reveal. The 3D ring is served from a separate
- * origin and embedded in an iframe; scroll and pointer are forwarded via postMessage.
+ * Hero: the fixed `<h1>` whose word art ("Everywhere") is the 3D `HeroRing` behind
+ * it, over a `.grid-container` overlay holding the description and the in-page
+ * chapter nav. Both the description and the nav labels render through `SplitText`
+ * for the per-letter reveal. The ring is a CSS 3D transform cylinder driven by
+ * scroll and pointer — see `HeroRing`.
  */
 export function Hero({ ringLabel, description, nav }: HeroContent) {
   return (
@@ -41,7 +42,9 @@ export function Hero({ ringLabel, description, nav }: HeroContent) {
           { perspective: "5400px", "--hero-ring-letter-size": "calc(var(--hero-ring-radius) * 0.35)" } as CSSProperties
         }
       >
-        <div className="w-[calc(var(--hero-ring-radius)*2)] h-[calc(var(--hero-ring-radius)*2)]" />
+        <div className="w-[calc(var(--hero-ring-radius)*2)] h-[calc(var(--hero-ring-radius)*2)]">
+          <HeroRing />
+        </div>
       </h1>
 
       <div className="grid-container flex relative h-svh mobile-landscape:min-h-480 items-end pointer-events-none justify-center pb-[env(safe-area-inset-bottom)]">

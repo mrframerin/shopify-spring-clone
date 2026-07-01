@@ -7,3 +7,6 @@ dist-ssr
 .env*.local
 *.tsbuildinfo
 
+# The vendored 3D background engine (engine/spring2026) IS committed — it is what
+# the dev/preview helper server serves at root so the 1:1 hero background works from
+# a plain `npm run dev`, no second manual step. See scripts/vite-plugin-hero-engine.mjs.

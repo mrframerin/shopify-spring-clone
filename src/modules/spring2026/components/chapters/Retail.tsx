@@ -5,8 +5,8 @@ import { RetailPos } from "./RetailPos";
 /**
  * "Retail" chapter — a bespoke skeleton: a `#ballcap` 3D-merch target and a
  * "Retail Merch" hit-area, a title panel that fades with the scene, then the
- * content region. The 3D scene runs in a separate origin embedded via iframe;
- * pointer and scroll are forwarded to it over postMessage.
+ * content region. The 3D scene is the shared WebGL background (`HeroBackground`),
+ * which reacts to pointer and scroll directly from the window.
  *
  * The opening feature is the interactive `shopify-pos-v11` POS widget (`RetailPos`
  * — a real `role="tablist"` whose panel media animates with the scene). The
